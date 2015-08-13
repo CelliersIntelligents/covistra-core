@@ -1,0 +1,35 @@
+{
+  "name": "cmbf-core",
+  "version": "0.1.0",
+  "description": "Covistra Mobile-Backend Framework Core Module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joel Grenon <joelgrenon@covistra.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "boom": "^2.8.0",
+    "bunyan-format": "^0.2.1",
+    "catbox-memory": "^1.1.1",
+    "covistra-messaging": "^0.2.4",
+    "covistra-socket": "^0.3.2",
+    "covistra-system": "^0.2.4",
+    "handlebars": "^3.0.3",
+    "hapi": "^9.0.1",
+    "hapi-auth-basic": "^3.0.0",
+    "hapi-auth-bearer-token": "^3.1.1",
+    "hapi-auth-cookie": "^3.0.1",
+    "hapi-bunyan": "^0.6.0",
+    "hapi-config": "0.0.6",
+    "hapi-swagger": "^1.1.0",
+    "hoek": "^2.14.0",
+    "inert": "^3.0.1",
+    "items": "^1.1.0",
+    "joi": "^6.6.1",
+    "lodash": "^3.10.1",
+    "shortid": "^2.2.2",
+    "vision": "^2.0.1"
+  }
+}
