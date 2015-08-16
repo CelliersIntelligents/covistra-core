@@ -1,6 +1,6 @@
 {
   "name": "cmbf-core",
-  "version": "0.1.2-pre",
+  "version": "0.2.0",
   "description": "Covistra Mobile-Backend Framework Core Module",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "author": "Joel Grenon <joelgrenon@covistra.com>",
   "license": "Apache-2.0",
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "https://github.com/Covistra/covistra-core"
   },
