@@ -43,7 +43,7 @@ plugins:
 # These can be overriden by ENV variables to easily adapt to various execution environments
 MONGODB_HOST: localhost
 PORT: 3000
-ADMIN_PORT: 3001
+# ADMIN_PORT: 3001
 
 # Override this using an ENV variable when launching the server for the first time
 DEFAULT_ADMIN_PASSWORD: cmbf2015
