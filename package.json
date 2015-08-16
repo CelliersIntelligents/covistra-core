@@ -18,7 +18,7 @@
     "bunyan-format": "^0.2.1",
     "catbox-memory": "^1.1.1",
     "covistra-admin": "^0.2.0",
-    "covistra-mongodb": "^0.3.1",
+    "covistra-mongodb": "^0.3.2",
     "covistra-security": "^0.1.2",
     "covistra-system": "^0.4.0",
     "handlebars": "^3.0.3",
