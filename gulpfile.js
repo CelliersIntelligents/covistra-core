@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var minimist = require('minimist');
 var istanbul = require('gulp-istanbul');
+var path = require('path');
 
 var knownOptions = {
     string: 'env',
@@ -17,13 +18,13 @@ gulp.task('coverage', function () {
     // Build our test target
     if (options.target) {
         console.log("Executing %s plugin unit tests", options.target);
-        tests.push('./plugins/' + options.target + "/test/unit/**/*-spec.js");
-        src.unshift('./plugins/' + options.target + "/**/*.js");
+        tests.push(path.resolve('./plugins/', options.target, "/test/unit/**/*-spec.js"));
+        src.unshift(path.resolve('./plugins/', options.target, "/**/*.js"));
     }
     else {
         console.log("Executing all plugins unit tests");
-        tests.push('./plugins/**/test/unit/**/*-spec.js');
-        src.unshift('./plugins/**/*.js');
+        tests.push(path.resolve('./plugins/**/test/unit/**/*-spec.js'));
+        src.unshift(path.resolve('./plugins/**/*.js'));
     }
 
     return gulp.src(src)
