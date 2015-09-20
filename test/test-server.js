@@ -1,6 +1,7 @@
 var cmbf = require('../');
 var requireDirectory = require('require-directory');
 var path = require('path');
+var P = require('bluebird');
 
 module.exports = cmbf.launch({testMode: true}).then(function() {
     cmbf.log.info("CMBF test server was successfully launched!");

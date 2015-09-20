@@ -50,21 +50,24 @@ gulp.task('unit', function () {
 
     return require('./test/test-server').then(function (ctx) {
 
-        // Build our test target
-        if (options.target) {
-            console.log("Executing %s plugin unit tests", options.target);
-            src.push('./plugins/' + options.target + "/test/unit/**/*-spec.js");
-        }
-        else {
-            console.log("Executing all plugins unit tests");
-            src.push('./test/unit/**/*-spec.js');
+        if(ctx) {
+            // Build our test target
+            if (options.target) {
+                console.log("Executing %s plugin unit tests", options.target);
+                src.push('./plugins/' + options.target + "/test/unit/**/*-spec.js");
+            }
+            else {
+                console.log("Executing all plugins unit tests");
+                src.push('./test/unit/**/*-spec.js');
+            }
+
+            return gulp.src(src, {read: false})
+                .pipe(mocha({reporter: 'spec'}))
+                .on('end', function () {
+                    ctx.shutdown();
+                });
         }
 
-        return gulp.src(src, {read: false})
-            .pipe(mocha({reporter: 'spec'}))
-            .on('end', function () {
-                ctx.shutdown();
-            });
     });
 
 });
