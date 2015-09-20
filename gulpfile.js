@@ -51,23 +51,22 @@ gulp.task('unit', function () {
 
     return require('./test/test-server').then(function (ctx) {
 
-        if(ctx) {
-            // Build our test target
-            if (options.target) {
-                console.log("Executing %s plugin unit tests", options.target);
-                src.push(path.resolve('./plugins/', options.target, "/test/unit/**/*-spec.js"));
-            }
-            else {
-                console.log("Executing all plugins unit tests");
-                src.push(path.resolve('./test/unit/**/*-spec.js'));
-            }
-
-            return gulp.src(src, {read: false})
-                .pipe(mocha({reporter: 'spec'}))
-                .on('end', function () {
-                    ctx.shutdown();
-                });
+        // Build our test target
+        if (options.target) {
+            console.log("Executing %s plugin unit tests", options.target);
+            src.push(path.resolve('./plugins/', options.target, "/test/unit/**/*-spec.js"));
         }
+        else {
+            console.log("Executing all plugins unit tests");
+            src.push(path.resolve('./test/unit/**/*-spec.js'));
+            src.push(path.resolve('./plugins/**/test/unit/**/*-spec.js'));
+        }
+
+        return gulp.src(src, {read: false})
+            .pipe(mocha({reporter: 'spec'}))
+            .on('end', function () {
+                ctx.shutdown();
+            });
 
     });
 
