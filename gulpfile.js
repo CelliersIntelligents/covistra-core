@@ -32,7 +32,7 @@ gulp.task('coverage', function () {
         .pipe(istanbul.hookRequire())
         .on('finish', function () {
 
-            return require('./tests/setup').then(function (ctx) {
+            return require('./test/test-server').then(function (ctx) {
 
                 return gulp.src(tests, {read: false})
                     .pipe(mocha({reporter: 'spec'}))
@@ -55,11 +55,11 @@ gulp.task('unit', function () {
             // Build our test target
             if (options.target) {
                 console.log("Executing %s plugin unit tests", options.target);
-                src.push('./plugins/' + options.target + "/test/unit/**/*-spec.js");
+                src.push(path.resolve('./plugins/', options.target, "/test/unit/**/*-spec.js"));
             }
             else {
                 console.log("Executing all plugins unit tests");
-                src.push('./test/unit/**/*-spec.js');
+                src.push(path.resolve('./test/unit/**/*-spec.js'));
             }
 
             return gulp.src(src, {read: false})
