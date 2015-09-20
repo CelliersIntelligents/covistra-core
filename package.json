@@ -1,6 +1,6 @@
 {
   "name": "cmbf-core",
-  "version": "0.5.6-pre",
+  "version": "0.5.6",
   "description": "Covistra Mobile-Backend Framework Core Module",
   "main": "index.js",
   "scripts": {
