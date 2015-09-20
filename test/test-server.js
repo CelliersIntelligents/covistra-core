@@ -1,7 +1,20 @@
 var cmbf = require('../');
-var requireDirectory = require('require-directory');
 var path = require('path');
 var P = require('bluebird');
+var fs = require('fs');
+var _ = require('lodash');
+
+// Register all test hooks before launching the test server
+if(fs.existsSync(path.resolve('./test/test-server-hooks.js'))) {
+    cmbf.log.info("Registering all test server hooks");
+    var hooks = require(path.resolve('./test/test-server-hooks'));
+
+    _.each(_.keys(hooks), function(hookKey) {
+        cmbf.registerHook(hookKey, hooks[hookKey]);
+    });
+
+    cmbf.log.info("All %d hooks were successfully registered", _.keys(hooks).length);
+}
 
 module.exports = cmbf.launch({testMode: true}).then(function() {
     cmbf.log.info("CMBF test server was successfully launched!");
