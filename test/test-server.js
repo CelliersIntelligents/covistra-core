@@ -1,4 +1,6 @@
 var cmbf = require('../');
+var requireDirectory = require('require-directory');
+var path = require('path');
 
 module.exports = cmbf.launch({testMode: true}).then(function() {
     cmbf.log.info("CMBF test server was successfully launched!");
@@ -11,6 +13,7 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
     ctx.server = cmbf.server;
     ctx.log = systemLog;
     ctx.config = config;
+
     ctx.shutdown = function() {
         cmbf.log.info("Test server was successfully terminated");
         process.exit(0);
@@ -24,7 +27,7 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
     };
 
     // Load all test data
-    ctx.data = requireDirectory(module, path.resolve('./test/fixtures'));
+    ctx.data = cmbf.server.plugins['covistra-mongodb'].loadFixtures(path.resolve('./test/fixtures'));
     ctx.ObjectId = cmbf.server.plugins['covistra-mongodb'].ObjectId;
 
     return ctx;

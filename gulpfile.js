@@ -49,7 +49,6 @@ gulp.task('unit', function () {
     var src = [];
 
     return require('./test/test-server').then(function (ctx) {
-        console.dir(ctx);
 
         // Build our test target
         if (options.target) {

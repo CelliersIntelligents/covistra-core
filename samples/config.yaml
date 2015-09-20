@@ -19,6 +19,7 @@ plugins:
       - name: ARCHIVE
         uri: mongodb://$MONGODB_HOST:27017/cmbf_archive
   admin:
+    url: http://$HOSTNAME/admin
     seed-data:
       MAIN:
         applications:
@@ -47,3 +48,4 @@ PORT: 3000
 
 # Override this using an ENV variable when launching the server for the first time
 DEFAULT_ADMIN_PASSWORD: cmbf2015
+HOSTNAME: localhost
