@@ -27,10 +27,13 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
     };
 
     // Load all test data
-    ctx.data = cmbf.server.plugins['covistra-mongodb'].loadFixtures(path.resolve('./test/fixtures'));
+    ctx.data = cmbf.callHook('load-fixtures', function() {
+        return cmbf.server.plugins['covistra-mongodb'].loadFixtures(path.resolve('./test/fixtures'));
+    });
+
     ctx.ObjectId = cmbf.server.plugins['covistra-mongodb'].ObjectId;
 
-    return ctx;
+    return P.props(ctx);
 })
 
 .catch(function(err) {
