@@ -1,9 +1,10 @@
+var Cmbf = require('../../../.');
 
 describe('core', function() {
     var ctx, credentials;
 
     before(function (done) {
-        require('../../test-server').then(function (result) {
+        Cmbf.test_ctx.then(function (result) {
             ctx = result;
 
             credentials = {
