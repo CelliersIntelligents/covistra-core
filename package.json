@@ -23,7 +23,7 @@
     "covistra-admin": "^1.0.0",
     "covistra-mongodb": "^1.1.1",
     "covistra-security": "^1.0.0",
-    "covistra-system": "^0.4.2",
+    "covistra-system": "^0.5.2",
     "handlebars": "^3.0.3",
     "hapi": "^9.3.1",
     "hapi-auth-basic": "^3.0.0",
