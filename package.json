@@ -22,7 +22,7 @@
     "catbox-redis": "^1.0.5",
     "covistra-admin": "^1.0.0",
     "covistra-mongodb": "^1.1.2",
-    "covistra-security": "^1.0.9",
+    "covistra-security": "^1.1.0",
     "covistra-system": "^0.5.3",
     "handlebars": "^3.0.3",
     "hapi": "^9.3.1",
