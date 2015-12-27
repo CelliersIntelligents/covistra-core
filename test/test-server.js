@@ -47,6 +47,10 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
 
     ctx.ObjectId = cmbf.server.plugins['covistra-mongodb'].ObjectId;
 
+    ctx.inject = function(modulePath) {
+        return require(path.resolve(modulePath))(ctx.server, ctx.config, ctx.log);
+    };
+
     cmbf.test_ctx = P.props(ctx);
     return cmbf.test_ctx;
 })

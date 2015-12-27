@@ -33,6 +33,7 @@ gulp.task('coverage', function () {
         .on('finish', function () {
 
             return require('./test/test-server').then(function (ctx) {
+                console.dir(ctx);
 
                 return gulp.src(tests, {read: false})
                     .pipe(mocha({reporter: 'spec'}))
