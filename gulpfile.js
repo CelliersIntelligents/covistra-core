@@ -23,8 +23,10 @@ gulp.task('coverage', function () {
     }
     else {
         console.log("Executing all plugins unit tests");
+        tests.push(path.resolve('./test/unit/**/*-spec.js'));
         tests.push(path.resolve('./plugins/**/test/unit/**/*-spec.js'));
         src.unshift(path.resolve('./plugins/**/*.js'));
+        src.push(path.resolve('./lib/**/*-spec.js'));
     }
 
     return gulp.src(src)
@@ -33,8 +35,6 @@ gulp.task('coverage', function () {
         .on('finish', function () {
 
             return require('./test/test-server').then(function (ctx) {
-                console.dir(ctx);
-
                 return gulp.src(tests, {read: false})
                     .pipe(mocha({reporter: 'spec'}))
                     .pipe(istanbul.writeReports())

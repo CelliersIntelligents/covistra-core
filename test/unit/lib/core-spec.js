@@ -3,8 +3,8 @@ var Cmbf = require('../../../.');
 describe('core', function() {
     var ctx, credentials;
 
-    before(function (done) {
-        Cmbf.test_ctx.then(function (result) {
+    before(function () {
+        return Cmbf.test_ctx.then(function (result) {
             ctx = result;
 
             credentials = {
@@ -15,7 +15,6 @@ describe('core', function() {
                 profile: {}
             };
 
-            done();
         });
     });
 
