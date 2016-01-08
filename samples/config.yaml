@@ -2,6 +2,11 @@ server:
   info:
     app_title: CMBF Sample Server
     app_name: cmbf_sample_server
+  framework:
+    - covistra-system
+    - covistra-mongodb
+    - covistra-security
+    - covistra-admin
 
 plugins:
   system:
