@@ -21,7 +21,7 @@
     "catbox-mongodb": "^1.1.2",
     "catbox-redis": "^1.0.5",
     "covistra-admin": "^1.0.0",
-    "covistra-mongodb": "^1.1.2",
+    "covistra-mongodb": "^1.1.3",
     "covistra-security": "^1.1.3",
     "covistra-system": "^0.5.5",
     "handlebars": "^4.0.5",
