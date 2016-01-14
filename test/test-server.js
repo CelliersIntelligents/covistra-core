@@ -32,27 +32,26 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
         cmbf.log.info("Test server was successfully terminated");
         process.exit(0);
     };
-    ctx.cleanUp = cmbf.server.plugins['covistra-mongodb'].cleanUp;
-    ctx.cleanUpRef = cmbf.server.plugins['covistra-mongodb'].cleanUpRef;
+
     ctx.success = function(cb) {
         return function() {
             return cb();
         };
     };
 
-    // Load all test data
-    ctx.data = cmbf.callHook('load-fixtures', function() {
-        return cmbf.server.plugins['covistra-mongodb'].loadFixtures(path.resolve('./test/fixtures'));
-    });
-
-    ctx.ObjectId = cmbf.server.plugins['covistra-mongodb'].ObjectId;
-
     ctx.inject = function(modulePath) {
         return require(path.resolve(modulePath))(ctx.server, ctx.config, ctx.log);
     };
 
-    cmbf.test_ctx = P.props(ctx);
-    return cmbf.test_ctx;
+    // Loop through all registered plugins and ask them to expose their test mode services
+    return P.map(_.values(cmbf.server.plugins), function(plugin) {
+        if(_.isFunction(plugin.setupTestMode)) {
+            return plugin.setupTestMode(ctx);
+        }
+    }).then(function() {
+        cmbf.test_ctx = P.props(ctx);
+        return cmbf.test_ctx;
+    });
 })
 
 .catch(function(err) {

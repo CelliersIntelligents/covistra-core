@@ -11,21 +11,22 @@ var knownOptions = {
 
 var options = minimist(process.argv.slice(2), knownOptions);
 
+var pluginPath = options.pluginPath || './plugins';
 
 gulp.task('coverage', function () {
-    var tests = [], src = ['!./plugins/admin/**/*.js', '!./plugins/**/test/**/*.js'];
+    var tests = [], src = ['!'+pluginPath+'/**/test/**/*.js'];
 
     // Build our test target
     if (options.target) {
         console.log("Executing %s plugin unit tests", options.target);
-        tests.push(path.resolve('./plugins/', options.target, "/test/unit/**/*-spec.js"));
-        src.unshift(path.resolve('./plugins/', options.target, "/**/*.js"));
+        tests.push(path.resolve(pluginPath+'/', options.target, "/test/unit/**/*-spec.js"));
+        src.unshift(path.resolve(pluginPath+'/', options.target, "/**/*.js"));
     }
     else {
         console.log("Executing all plugins unit tests");
         tests.push(path.resolve('./test/unit/**/*-spec.js'));
-        tests.push(path.resolve('./plugins/**/test/unit/**/*-spec.js'));
-        src.unshift(path.resolve('./plugins/**/*.js'));
+        tests.push(path.resolve(pluginPath+'/**/test/unit/**/*-spec.js'));
+        src.unshift(path.resolve(pluginPath+'/**/*.js'));
         src.push(path.resolve('./lib/**/*-spec.js'));
     }
 
@@ -55,18 +56,44 @@ gulp.task('unit', function () {
         // Build our test target
         if (options.target) {
             console.log("Executing %s plugin unit tests", options.target);
-            src.push(path.resolve('./plugins/', options.target, "/test/unit/**/*-spec.js"));
+            src.push(path.resolve(pluginPath+'/', options.target, "/test/unit/**/*-spec.js"));
         }
         else {
             console.log("Executing all plugins unit tests");
             src.push(path.resolve('./test/unit/**/*-spec.js'));
-            src.push(path.resolve('./plugins/**/test/unit/**/*-spec.js'));
+            src.push(path.resolve(pluginPath+'/**/test/unit/**/*-spec.js'));
         }
 
         return gulp.src(src, {read: false})
             .pipe(mocha({reporter: 'spec'}))
             .on('end', function () {
                 ctx.shutdown();
+            });
+
+    });
+
+});
+
+gulp.task('unit-service', function () {
+    var src = [];
+
+    return require('./test/environment').then(function (env) {
+
+        // Build our test target
+        if (options.target) {
+            console.log("Executing %s plugin unit tests", options.target);
+            src.push(path.resolve(pluginPath+'/', options.target, "/test/unit/**/*-spec.js"));
+        }
+        else {
+            console.log("Executing all plugins unit tests");
+            src.push(path.resolve('./test/unit/**/*-spec.js'));
+            src.push(path.resolve(pluginPath+'/**/test/unit/**/*-spec.js'));
+        }
+
+        return gulp.src(src, {read: false})
+            .pipe(mocha({reporter: 'spec'}))
+            .on('end', function () {
+                env.shutdown();
             });
 
     });
