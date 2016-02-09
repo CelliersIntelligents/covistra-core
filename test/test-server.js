@@ -28,6 +28,8 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
     ctx.log = systemLog;
     ctx.config = config;
 
+    cmbf.server.decorate('server', 'context', ctx);
+
     ctx.shutdown = function() {
         cmbf.log.info("Test server was successfully terminated");
         process.exit(0);
