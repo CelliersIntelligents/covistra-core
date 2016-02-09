@@ -41,6 +41,10 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
         };
     };
 
+    ctx.callHook = function() {
+        return cmbf.callHook.apply(cmbf, arguments);
+    };
+
     ctx.inject = function(modulePath) {
         return require(path.resolve(modulePath))(ctx.server, ctx.config, ctx.log);
     };
