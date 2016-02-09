@@ -20,6 +20,7 @@
     "catbox-memory": "1.1.2",
     "catbox-mongodb": "1.1.2",
     "catbox-redis": "1.0.5",
+    "chairo": "^2.0.0",
     "handlebars": "4.0.5",
     "hapi": "11.1.4",
     "hapi-auth-basic": "3.0.0",
