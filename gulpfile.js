@@ -14,7 +14,7 @@ var options = minimist(process.argv.slice(2), knownOptions);
 var pluginPath = options.pluginPath || './plugins';
 
 gulp.task('coverage', function () {
-    var tests = [], src = ['!'+pluginPath+'/**/test/**/*.js'];
+    var tests = [], src = ['!'+pluginPath+'/**/test/**/*.js', '!'+pluginPath+'/**/assets/**'];
 
     // Build our test target
     if (options.target) {
