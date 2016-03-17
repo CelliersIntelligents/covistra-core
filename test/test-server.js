@@ -50,15 +50,6 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
         return require(path.resolve(modulePath))(ctx.server, ctx.config, ctx.log);
     };
 
-    ctx.createServiceStub = function(fn) {
-        this._oldService = this.server.service;
-        this.server.decorate('server', 'service', sinon.stub(this.server, 'service', fn));
-    };
-
-    ctx.restoreService = function() {
-        this.server.decorate('server', 'service', this._oldService);
-    };
-
     // Loop through all registered plugins and ask them to expose their test mode services
     return P.map(_.values(cmbf.server.plugins), function(plugin) {
         if(_.isFunction(plugin.setupTestMode)) {
