@@ -3,6 +3,7 @@ var path = require('path');
 var P = require('bluebird');
 var fs = require('fs');
 var _ = require('lodash');
+var sinon = require('sinon');
 
 // Register all test hooks before launching the test server
 if(fs.existsSync(path.resolve('./test/test-server-hooks.js'))) {
@@ -47,6 +48,15 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
 
     ctx.inject = function(modulePath) {
         return require(path.resolve(modulePath))(ctx.server, ctx.config, ctx.log);
+    };
+
+    ctx.createServiceStub = function(fn) {
+        this._oldService = this.server.service;
+        this.server.decorate('server', 'service', sinon.stub(this.server, 'service', fn));
+    };
+
+    ctx.restoreService = function() {
+        this.server.decorate('server', 'service', this._oldService);
     };
 
     // Loop through all registered plugins and ask them to expose their test mode services
