@@ -3,6 +3,7 @@
 [![bitHound Overall Score](https://www.bithound.io/github/Covistra/covistra-core/badges/score.svg)](https://www.bithound.io/github/Covistra/covistra-core)
 [![bitHound Code](https://www.bithound.io/github/Covistra/covistra-core/badges/code.svg)](https://www.bithound.io/github/Covistra/covistra-core)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/Covistra/covistra-core/badges/devDependencies.svg)](https://www.bithound.io/github/Covistra/covistra-core/master/dependencies/npm)
+[![Known Vulnerabilities](https://snyk.io/test/npm/cmbf-core/badge.svg)](https://snyk.io/test/npm/cmbf-core)
 
 This module is the foundation of the framework. It imports all dependencies (including Hapi) and provide tools to quickly
 setup a mobile-backend, ready to be extended with the various CMBF plugins out there.
