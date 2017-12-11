@@ -51,14 +51,16 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
     };
 
     // Loop through all registered plugins and ask them to expose their test mode services
-    return P.map(_.values(cmbf.server.plugins), function(plugin) {
+    _.map( _.values(Cmbf.server.plugins), function(plugin){
         if(_.isFunction(plugin.setupTestMode)) {
-            return plugin.setupTestMode(ctx);
+            return plugin.setupTestMode(ctx);            
         }
-    }).then(function() {
-        cmbf.test_ctx = P.props(ctx);
-        return cmbf.test_ctx;
-    });
+    })
+
+    Cmbf.test_ctx = P.props(ctx);
+    console.log("Assigning test_ctx: " + Cmbf.test_ctx + " with id " + Cmbf.id);
+    return Cmbf.test_ctx;
+
 })
 
 .catch(function(err) {
