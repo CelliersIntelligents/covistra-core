@@ -57,9 +57,9 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
         }
     })
 
-    Cmbf.test_ctx = P.props(ctx);
-    console.log("Assigning test_ctx: " + Cmbf.test_ctx + " with id " + Cmbf.id);
-    return Cmbf.test_ctx;
+    cmbf.test_ctx = P.props(ctx);
+    console.log("Assigning test_ctx: " + cmbf.test_ctx + " with id " + cmbf.id);
+    return cmbf.test_ctx;
 
 })
 
