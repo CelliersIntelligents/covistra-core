@@ -51,7 +51,7 @@ module.exports = cmbf.launch({testMode: true}).then(function() {
     };
 
     // Loop through all registered plugins and ask them to expose their test mode services
-    _.map( _.values(Cmbf.server.plugins), function(plugin){
+    _.map( _.values(cmbf.server.plugins), function(plugin){
         if(_.isFunction(plugin.setupTestMode)) {
             return plugin.setupTestMode(ctx);            
         }
